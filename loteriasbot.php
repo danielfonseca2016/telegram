@@ -2,7 +2,7 @@
 
 require('parser.php');
 
-define('BOT_TOKEN', '232247361:AAH9qohJvmHz6rTLdOXwkhuh9Y-XPGaIPg4');
+define('BOT_TOKEN', '249037680:AAF75-oB6mbN16Xh_CLUmvc1nnhhOV8J_vY');
 define('API_URL', 'https://api.telegram.org/bot'.BOT_TOKEN.'/');
 
 function processMessage($message) {
@@ -14,10 +14,10 @@ function processMessage($message) {
     $text = $message['text'];//texto recebido na mensagem
 
     if (strpos($text, "/start") === 0) {
-		//envia a mensagem ao usuário
-      sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'Olá, '. $message['from']['first_name'].
-		'! Eu sou um bot que informa o resultado do último sorteio da Mega Sena. Será que você ganhou dessa vez? Para começar, escolha qual loteria você deseja ver o resultado', 'reply_markup' => array(
-        'keyboard' => array(array('Mega-Sena', 'Quina'),array('Lotofácil','Lotomania')),
+		//envia a mensagem ao usuÃ¡rio
+      sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'OlÃ¡, '. $message['from']['first_name'].
+		'! Eu sou um bot que informa o resultado do Ãºltimo sorteio da Mega Sena. SerÃ¡ que vocÃª ganhou dessa vez? Para comeÃ§ar, escolha qual loteria vocÃª deseja ver o resultado', 'reply_markup' => array(
+        'keyboard' => array(array('Mega-Sena', 'Quina'),array('LotofÃ¡cil','Lotomania')),
         'one_time_keyboard' => true)));
     } else if ($text === "Mega-Sena") {
       sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => getResult('megasena', $text)));
@@ -28,10 +28,10 @@ function processMessage($message) {
     } else if ($text === "Lotofacil") {
       sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => getResult('lotofacil', $text)));
     } else {
-      sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'Desculpe, mas não entendi essa mensagem. :('));
+      sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'Desculpe, mas nÃ£o entendi essa mensagem. :('));
     }
   } else {
-    sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'Desculpe, mas só compreendo mensagens em texto'));
+    sendMessage("sendMessage", array('chat_id' => $chat_id, "text" => 'Desculpe, mas sÃ³ compreendo mensagens em texto'));
   }
 }
 
@@ -49,7 +49,7 @@ $context  = stream_context_create( $options );
 file_get_contents(API_URL.$method, false, $context );
 }
 
-//obtém as atualizações do bot
+//obtÃ©m as atualizaÃ§Ãµes do bot
 $update_response = file_get_contents("php://input");
 
 $update = json_decode($update_response, true);
